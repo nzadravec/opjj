@@ -1,0 +1,2 @@
+The mkdir command takes a single argument: directory name, and creates the
+appropriate directory structure.

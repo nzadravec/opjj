@@ -1,0 +1,6 @@
+The copy command expects two arguments: source file name and destination file
+name (i.e. paths and names). Is destination file exists, shell asks user is
+it allowed to overwrite it. Copy command works only with files (no
+directories). If the second argument is directory, shell assumes that user
+wants to copy the original file into that directory using the original file
+name.

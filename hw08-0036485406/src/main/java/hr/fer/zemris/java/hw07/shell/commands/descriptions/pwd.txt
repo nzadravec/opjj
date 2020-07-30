@@ -1,0 +1,1 @@
+Prints to the terminal the current directory. Takes no arguments.

@@ -1,0 +1,2 @@
+Command prints to the terminal all the paths that are on the stack starting
+from the last one added.

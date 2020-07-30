@@ -1,0 +1,15 @@
+Command symbol changes shells symbols. First argument represents symbol name
+and second argument represents new symbol. If command is called with only
+first argument, it prints current symbol.
+
+Shell symbols:
+PROMPTSYMBOL - symbol on a display screen indicating that the shell is
+waiting for input
+
+MORELINESSYMBOL - each line that is not the last line of command must end
+with this symbol that is used to inform the shell that more lines is
+expected
+
+MULTILINESYMBOL - shell writes this symbol at the beginning followed by a
+single whitespace for each line that is part of multi-line command (except
+for the first one)

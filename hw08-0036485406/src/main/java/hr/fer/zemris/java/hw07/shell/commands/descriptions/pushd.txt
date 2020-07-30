@@ -1,0 +1,5 @@
+pushd PATH
+Command pushes the current directory on the stack and then as the current
+directory sets given single argument (PATH). If PATH does not represent the
+existing directory, the command prints the error and does not modify the
+stack or the current directory).

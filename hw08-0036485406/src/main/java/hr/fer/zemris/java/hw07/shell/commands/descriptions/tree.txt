@@ -1,0 +1,2 @@
+The tree command expects a single argument: directory name and prints a tree
+(each directory level shifts) output two charatcers to the right).

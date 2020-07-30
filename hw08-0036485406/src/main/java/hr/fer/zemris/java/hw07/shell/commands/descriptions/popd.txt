@@ -1,0 +1,4 @@
+Command removes the top path from stack and sets it as the current directory
+(if it exists, for example, it may be deleted in the meantime, in which case
+the top path is still removing from stack, but the current directory does not
+change). If the stack is empty, the command fails.

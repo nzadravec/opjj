@@ -1,0 +1,2 @@
+Command charsets takes no arguments and lists names of supported charsets. A
+single charset name is written per line.

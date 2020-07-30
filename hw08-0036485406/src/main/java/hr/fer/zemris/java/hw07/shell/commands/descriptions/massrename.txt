@@ -1,0 +1,109 @@
+massrename DIR1 DIR2 CMD mask EXPR
+
+The command is used for mass-renaming/moving files (not directories!) that
+are directly in DIR1. The files will be moved to DIR2 (which can be the same
+as DIR1). MASK is a regular expression that selects files from DIR1 to which
+the renaming/moving procedure will be applied.
+
+Command supports several sub commands defined by CMD. For the purposes of
+illustration, the DIR1 directory should contain the following:
+
+slika1-zagreb.jpg
+slika2-zagreb.jpg
+slika3-zagreb.jpg
+slika4-zagreb.jpg
+slika1-zadar.jpg
+slika2-zadar.jpg
+slika3-zadar.jpg
+slika4-zadar.jpg
+ljeto-2018-slika1.jpg
+ljeto-2018-slika2.jpg
+ljeto-2018-slika3.jpg
+ljeto-2018-slika4.jpg
+
+filter - the command prints the file names that are selected by mask. For
+example:
+
+massrename DIR1 DIR2 filter "slika\d+-[^.]+\.jpg"
+slika1-zagreb.jpg
+slika2-zagreb.jpg
+slika3-zagreb.jpg
+slika4-zagreb.jpg
+slika1-zadar.jpg
+slika2-zadar.jpg
+slika3-zadar.jpg
+slika4-zadar.jpg
+
+where the print order is not important. Please note, we are writing MASK
+under the quotation marks (so it is up to the following quotes, and there are
+no escapees for our shell - all that is written inside is actually handed to
+the pattern) or we write it without quotation so it belongs to the first
+space/tab/... (and again no escape for our shell). Considering the given
+example, we will get exactly the same behavior with:
+
+massrename DIR1 DIR2 filter slika\d+-[^.]+\.jpg
+slika1-zagreb.jpg
+slika2-zagreb.jpg
+slika3-zagreb.jpg
+slika4-zagreb.jpg
+slika1-zadar.jpg
+slika2-zadar.jpg
+slika3-zadar.jpg
+slika4-zadar.jpg
+
+group - prints all the groups for all selected files:
+
+massrename DIR1 DIR2 groups slika(\d+)-([^.]+)\.jpg
+slika1-zagreb.jpg 0: slika1-zagreb.jpg 1: 1 2: zagreb
+slika2-zagreb.jpg 0: slika2-zagreb.jpg 1: 2 2: zagreb
+slika3-zagreb.jpg 0: slika3-zagreb.jpg 1: 3 2: zagreb
+slika4-zagreb.jpg 0: slika4-zagreb.jpg 1: 4 2: zagreb
+slika1-zadar.jpg 0: slika1-zadar.jpg 1: 1 2: zadar
+slika2-zadar.jpg 0: slika2-zadar.jpg 1: 2 2: zadar
+slika3-zadar.jpg 0: slika3-zadar.jpg 1: 3 2: zadar
+slika4-zadar.jpg 0: slika4-zadar.jpg 1: 4 2: zadar
+
+As in the mask we have two brackets - two groups (group 1 and group 2) and
+implicit group 0 are defined; so behind the name of each file we have groups
+0, 1 and 2 displayed on what they were mapped.
+
+show - the command takes another argument: EXPR which defines how a new name
+is generated. The command prints selected names and new names.
+
+massrename DIR1 DIR2 show slika(\d+)-([^.]+)\.jpg gradovi-${2}-${1,03}.jpg
+slika1-zagreb.jpg => gradovi-zagreb-001.jpg
+slika2-zagreb.jpg => gradovi-zagreb-002.jpg
+slika3-zagreb.jpg => gradovi-zagreb-003.jpg
+slika4-zagreb.jpg => gradovi-zagreb-004.jpg
+slika1-zadar.jpg => gradovi-zadar-001.jpg
+slika2-zadar.jpg => gradovi-zadar-002.jpg
+slika3-zadar.jpg => gradovi-zadar-003.jpg
+slika4-zadar.jpg => gradovi-zadar-004.jpg
+
+execute - makes given renaming / relocations.
+
+massrename DIR1 DIR2 execute slika(\d+)-([^.]+)\.jpg gradovi-${2}-${1,03}.jpg
+DIR1/slika1-zagreb.jpg => DIR2/gradovi-zagreb-001.jpg
+DIR1/slika2-zagreb.jpg => DIR2/gradovi-zagreb-002.jpg
+DIR1/slika3-zagreb.jpg => DIR2/gradovi-zagreb-003.jpg
+DIR1/slika4-zagreb.jpg => DIR2/gradovi-zagreb-004.jpg
+DIR1/slika1-zadar.jpg => DIR2/gradovi-zadar-001.jpg
+DIR1/slika2-zadar.jpg => DIR2/gradovi-zadar-002.jpg
+DIR1/slika3-zadar.jpg => DIR2/gradovi-zadar-003.jpg
+DIR1/slika4-zadar.jpg => DIR2/gradovi-zadar-004.jpg
+
+EXPR may be either something underneath the quotes (so there may be gaps) or
+a compact string of characters (up to the first space/tab/...). The
+expression may contain substitution commands that are in the form of
+${groupNumber} or $ {groupNumber, additionalSupport}. If the substitution
+command is $ {numberGrupe}, it replaces itself with a string mapped to the
+group of that number. This number must be positive integer number. If the
+substitution command of the form $ {numberGroup, additionalControl}, then the
+additional clarification must be a number or a zero number (whereby the
+number may be a multilevel). The number itself determines how many minimum
+characters will be "emitted" when writing the required group; eg "$ {1,3}"
+would mean group 1, at least three characters in width; if group 1 is longer
+than that, it is written all over; if it is shorter, it prints the required
+number of gaps (SPACE) and then the group so that the total number of
+characters is then equal to 3. "$ {1,03}" is defined as replacing the blank
+with a 0 sign.

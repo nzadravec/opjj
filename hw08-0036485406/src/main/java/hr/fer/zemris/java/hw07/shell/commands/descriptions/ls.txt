@@ -1,0 +1,2 @@
+Command ls takes a single argument – directory – and writes a directory
+listing (not recursive).

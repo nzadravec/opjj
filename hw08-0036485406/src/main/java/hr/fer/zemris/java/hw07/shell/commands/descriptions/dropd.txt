@@ -1,0 +1,2 @@
+Command removes the top directory from stack; the current directory does not
+change.

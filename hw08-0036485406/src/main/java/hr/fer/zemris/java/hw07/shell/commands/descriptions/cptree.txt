@@ -1,0 +1,13 @@
+cptree PATH1 PATH2
+Command copys the tree of PATH1. Let PATH1 is of form something/name1 and
+inside there is for example file1.txt, PATH2 is of form
+somethingelse/name2/name3. If somethingelse/name2/ime3 exists on disk, then
+it creates subdirectory name1 and continues to copy content, so that
+somethingelse/name2/name3/name1/file1.txt will arise. If
+somethingelse/name2/name3 does not exist but there is somethingelse/name2,
+the intrpretation is that the directory name1 wants to be copied under the
+name3 so it will be copied, ie it will appear
+somethingelse/name2/name3/file1.txt. If there is no somethingelse/name2/name3
+and nsomethingelse/name2, the command fails and nothing is copied. Given
+paths are initially resolved with respect to the current directory (command
+pwd).

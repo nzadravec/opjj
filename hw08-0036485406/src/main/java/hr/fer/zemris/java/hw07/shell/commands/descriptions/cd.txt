@@ -1,0 +1,4 @@
+cd PATH
+Takes one argument (PATH): the new current directory. The cd command argument
+can be a relative path that is disassociated with respect to the current
+directory (command pwd).

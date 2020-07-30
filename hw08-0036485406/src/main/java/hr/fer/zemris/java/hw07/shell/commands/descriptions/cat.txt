@@ -1,0 +1,4 @@
+Command cat takes one or two arguments. The first argument is path to some
+file and is mandatory. The second argument is charset name that is used to
+interpret chars from bytes. If not provided, a default platform charset is
+used. This command opens given file and writes its content to console.

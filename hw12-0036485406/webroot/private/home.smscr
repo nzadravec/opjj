@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  </head>
+    <title>Home</title>
+    <style>
+      body {background-color: #{$= "background" "00FF00" @tparamGet$};}
+    </style>
+  </head>
+  <body>
+
+    <h1>Home page</h1>
+    
+    <p>
+      Links to scripts:
+    </p>
+    
+    <ul>
+      <li>osnovni.smscr <a href="http://127.0.0.1:5721/scripts/osnovni.smscr" target="_blank">(here)</a></li>
+      <li>brojPoziva.smscr <a href="http://127.0.0.1:5721/scripts/brojPoziva.smscr" target="_blank">(here)</a></li>
+      <li>fibonaccih.smscr <a href="http://127.0.0.1:5721/scripts/fibonaccih.smscr" target="_blank">(here)</a></li>
+    </ul>
+    
+    <p>
+      and to workers:
+    </p>
+    
+    <ul>
+      <li>HelloWorker <a href="http://127.0.0.1:5721/hello" target="_blank">(here)</a></li>
+      <li>CircleWorker <a href="http://127.0.0.1:5721/ext/CircleWorker" target="_blank">(here)</a></li>
+    </ul>
+    
+    <form action="http://127.0.0.1:5721/calc">
+    a: <input type="number" name="a" value=""><br>
+    b: <input type="number" name="b" value=""><br>
+    <input type="submit" value="Submit">
+    </form>
+    <p>Click the "Submit" button and a and b values will be sent to SumWorker.</p>
+    
+    <form action="http://127.0.0.1:5721/setbgcolor">
+      <select name="bgcolor">
+        <option value="FF0000">Red</option>
+        <option value="00FF00">Green</option>
+        <option value="0000FF">Blue</option>
+      </select>
+      <br><br>
+      <input type="submit">
+    </form>
+    <p>Select one color and press "Submit" to change background.</p>
+
+  </body>
+</html>

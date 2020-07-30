@@ -1,0 +1,3 @@
+rmtree PATH
+PATH (resolved with the current directory) must be an existing directory; the
+command erases this directory and its complete content.

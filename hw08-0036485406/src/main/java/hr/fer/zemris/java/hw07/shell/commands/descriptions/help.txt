@@ -1,0 +1,3 @@
+If started with no arguments, it lists all supported commands. If started
+with single argument, it prints name and the description of selected command
+(or prints appropriate error message if no such command exists).
